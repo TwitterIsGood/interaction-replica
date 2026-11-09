@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="theme-color" content="#070606"/>
+<title>生日快乐 · 选座</title>
+<link rel="stylesheet" href="styles.css"/>
+<script type="importmap">
+{ "imports": { "three": "./vendor/three.module.js" } }
+</script>
+</head>
+<body data-mode="map">
+<div id="app">
+  <canvas id="scene"></canvas>
+  <div class="fx grain"></div>
+  <div class="fx vignette"></div>
+
+  <!-- ================= MAP UI ================= -->
+  <div class="ui map-ui" id="mapUI">
+    <header class="topbar">
+      <button class="icon-btn" aria-label="返回">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="hall">
+        <h1>生日快乐</h1>
+        <p>光年影城 · 3号厅 · 11月14日 周五</p>
+      </div>
+      <button class="icon-btn" aria-label="设置">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.1"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1.08-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1.08 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.6.85 1 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </button>
+    </header>
+
+    <nav class="times" id="times" aria-label="场次"></nav>
+
+    <div class="screen-hint" id="screenHint">银幕</div>
+
+    <div class="legend">
+      <span><i style="--c:#4c4842"></i>可选</span>
+      <span><i style="--c:#26231f"></i>已售</span>
+      <span><i style="--c:#7b3a3c"></i>躺椅</span>
+      <span><i style="--c:#5ce6a1"></i>已选</span>
+    </div>
+  </div>
+
+  <div class="ui bottom map-ui">
+    <div class="bottom-fade"></div>
+    <div class="bottom-inner">
+      <div class="bb-info">
+        <span class="bb-eyebrow" id="bbEyebrow">请选择座位</span>
+        <span class="bb-detail" id="bbDetail"></span>
+      </div>
+      <button class="cta" id="continueBtn" disabled>继续</button>
+    </div>
+  </div>
+
+  <!-- ================= SEAT VIEW UI ================= -->
+  <div class="ui seat-ui" id="seatUI">
+    <button class="icon-btn back-seat" id="backSeat" aria-label="返回座位图">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <div class="view-pill"><i></i><span id="viewPillText">B4座视角</span></div>
+
+    <section class="card" id="card">
+      <div class="grabber"></div>
+      <div class="card-head">
+        <div class="card-copy">
+          <div class="eyebrow" id="cardLabel">近距观影</div>
+          <h2 id="cardTitle">B排 4座</h2>
+          <p class="sub" id="cardSub">标准座 · ¥45.00</p>
+        </div>
+        <canvas class="minimap" id="minimap" width="180" height="140" aria-hidden="true"></canvas>
+      </div>
+      <div class="stats">
+        <div class="stat"><b id="statDist">6.3 米</b><span>距银幕</span></div>
+        <div class="stat"><b id="statFov">86°</b><span>视野角</span></div>
+        <div class="stat"><b id="statOffset">2.2 米</b><span id="statOffsetLabel">偏左</span></div>
+      </div>
+      <div class="actions">
+        <button class="btn ghost" id="changeSeat">重新选座</button>
+        <button class="btn book" id="bookBtn">确认购票 · ¥45.00</button>
+      </div>
+    </section>
+  </div>
+</div>
+<script type="module" src="app.js"></script>
+</body>
+</html>

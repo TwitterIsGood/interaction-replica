@@ -1,0 +1,6 @@
+[
+  { "tapPoint": [180, 540], "wait": 1400 },
+  { "tap": "#continueBtn", "wait": 3400 },
+  { "tap": "#changeSeat", "wait": 2400 },
+  { "tap": ".time:nth-child(3)", "wait": 2000 }
+]
